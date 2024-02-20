@@ -20,7 +20,11 @@ You can certify the currently released version and the two versions before that.
 
 ## What is a distribution, hosted platform, and an installer?
 
+<<<<<<< HEAD
 From the bottom of the Kubernetes Distributions & Platforms [spreadsheet](https://docs.google.com/spreadsheets/d/1uF9BoDzzisHSQemXHIKegMhuythuq_GL3N1mlUUK2h0/edit#gid=0):
+=======
+From the bottom of the Kubernetes Distributions & Platforms [spreadsheet](https://docs.google.com/spreadsheets/d/1LxSqBzjOxfGx3cmtZ4EbB_BGCxT_wlxW_xgHVVa23es/edit#gid=0):
+>>>>>>> master
 
 * A **vendor** is an organization providing a Kubernetes distribution, hosted platform, or installer.
 * A **product** is a distribution, hosted platform, or installer provided by a vendor.	
@@ -58,8 +62,12 @@ tests.
 
 ## Can I certify my private cloud that will not be available outside of our company?
 
+<<<<<<< HEAD
 You can, but it requires membership in CNCF or else may require fees as described [above](#what-is-the-cost-of-certification).
 Instead, you may be able to accomplish your goal of ensuring conformance
+=======
+You can, but it requires membership in CNCF. Instead, you may be able to accomplish your goal of ensuring conformance
+>>>>>>> master
 simply by [running](instructions.md) the conformance tests on your private cloud. As long as you pass, your
 implementation is conformant. It can't be certfied unless you complete the participation form, but certification
 (and the ability to use the Certified Kubernetes mark) is probably unnecessary for an internal-only product.

@@ -9,6 +9,7 @@ suite.
 
 ## Running
 
+<<<<<<< HEAD
 The standard tools for running these tests are
 [Sonobuoy](https://github.com/vmware-tanzu/sonobuoy) and [Hydrophone](https://github.com/kubernetes-sigs/hydrophone)
 
@@ -20,11 +21,23 @@ Download a [binary release](https://github.com/vmware-tanzu/sonobuoy/releases) o
 
 ```
 go get -u -v github.com/vmware-tanzu/sonobuoy
+=======
+The standard tool for running these tests is
+[Sonobuoy](https://github.com/vmware-tanzu/sonobuoy).  Sonobuoy is
+regularly built and kept up to date to execute against all
+currently supported versions of kubernetes.
+
+Download a [binary release](https://github.com/vmware-tanzu/sonobuoy/releases) of the CLI, or build it yourself by running:
+
+```
+$ go get -u -v github.com/vmware-tanzu/sonobuoy
+>>>>>>> master
 ```
 
 Deploy a Sonobuoy pod to your cluster with:
 
 ```
+<<<<<<< HEAD
 sonobuoy run --mode=certified-conformance
 ```
 
@@ -34,23 +47,43 @@ sonobuoy run --mode=certified-conformance
  - You can run the command synchronously by adding the flag `--wait` but be aware that running the conformance tests can take an hour or more.
 
  - There was an issue with versions v0.53.0 and v0.53.1. Details can be found in the Sonobuoy [docs](https://sonobuoy.io/docs/v0.53.1/issue1388/) on how to avoid or work around the issue.
+=======
+$ sonobuoy run --mode=certified-conformance
+```
+
+**NOTE:** The `--mode=certified-conformance` flag is required for certification runs since Kubernetes v1.16 (and Sonobuoy v0.16). Without this flag, tests which may be disruptive to your other workloads may be skipped. A valid certification run may not skip any conformance tests. If you're setting the test focus/skip values manually, certification runs require `E2E_FOCUS=\[Conformance\]` and no value for `E2E_SKIP`.
+
+**NOTE:** You can run the command synchronously by adding the flag `--wait` but be aware that running the conformance tests can take an hour or more.
+>>>>>>> master
 
 View actively running pods:
 
 ```
+<<<<<<< HEAD
 sonobuoy status
+=======
+$ sonobuoy status
+>>>>>>> master
 ```
 
 To inspect the logs:
 
 ```
+<<<<<<< HEAD
 sonobuoy logs
+=======
+$ sonobuoy logs
+>>>>>>> master
 ```
 
 Once `sonobuoy status` shows the run as `completed`, copy the output directory from the main Sonobuoy pod to a local directory:
 
 ```
+<<<<<<< HEAD
 outfile=$(sonobuoy retrieve)
+=======
+$ outfile=$(sonobuoy retrieve)
+>>>>>>> master
 ```
 
 This copies a single `.tar.gz` snapshot from the Sonobuoy pod into your local
@@ -67,9 +100,12 @@ To clean up Kubernetes objects created by Sonobuoy, run:
 ```
 sonobuoy delete
 ```
+<<<<<<< HEAD
 
 ### Hydrophone
 Refer to the [hydrophone docs](https://github.com/kubernetes-sigs/hydrophone/blob/main/README.md) for detailed instructions
+=======
+>>>>>>> master
 
 ## Uploading
 
@@ -85,13 +121,21 @@ Description: `Conformance results for vX.Y/$dir`
 
 ### Contents of the PR
 
+<<<<<<< HEAD
 Extract the relevant information from the tarball to compose your submission.
 
 If submitting test results for multiple versions, submit a PR for each product, ie. one PR for vX.Y results and a second PR for vX.Z
+=======
+For simplicity you can submit the tarball or extract the relevant information from the tarball to compose your submission.
+>>>>>>> master
 
 ```
 vX.Y/$dir/README.md: A script or human-readable description of how to reproduce
 your results.
+<<<<<<< HEAD
+=======
+vX.Y/$dir/sonobuoy.tar.gz: Raw output from sonobuoy. (optional)
+>>>>>>> master
 vX.Y/$dir/e2e.log: Test log output (from Sonobuoy).
 vX.Y/$dir/junit_01.xml: Machine-readable test log (from Sonobuoy).
 vX.Y/$dir/PRODUCT.yaml: See below.
@@ -101,6 +145,7 @@ vX.Y/$dir/PRODUCT.yaml: See below.
 
 This file describes your product. It is YAML formatted with the following root-level fields. Please fill in as appropriate.
 
+<<<<<<< HEAD
 | Field                   | Description                                                                                                                                                                                                                               |
 | ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `vendor`                | Name of the legal entity that is certifying. This entity must have a signed participation form on file with the CNCF                                                                                                                      |
@@ -113,6 +158,19 @@ This file describes your product. It is YAML formatted with the following root-l
 | `type`                  | Is your product a distribution, hosted platform, or installer (see [definitions](https://github.com/cncf/k8s-conformance/blob/master/faq.md#what-is-a-distribution-and-what-is-a-platform))                                               |
 | `description`           | One sentence description of your offering                                                                                                                                                                                                 |
 | `contact_email_address` | An email address which can be used to contact maintainers regarding the product submitted and updates to the submission process                                                                                                           |
+=======
+| Field               | Description |
+| ------------------- | ----------- |
+| `vendor`            | Name of the legal entity that is certifying. This entity must have a signed participation form on file with the CNCF  |
+| `name`              | Name of the product being certified. |
+| `version`           | The version of the product being certified (not the version of Kubernetes it runs). |
+| `website_url`       | URL to the product information website |
+| `repo_url`          | If your product is open source, this field is necessary to point to the primary GitHub repo containing the source. It's OK if this is a mirror. OPTIONAL  |
+| `documentation_url` | URL to the product documentation |
+| `product_logo_url`  | URL to the product's logo, (must be in SVG, AI or EPS format -- not a PNG -- and include the product name). OPTIONAL. If not supplied, we'll use your company logo. Please see logo [guidelines](https://github.com/cncf/landscape#logos) |
+| `type`              | Is your product a distribution, hosted platform, or installer (see [definitions](https://github.com/cncf/k8s-conformance/blob/master/faq.md#what-is-a-distribution-and-what-is-a-platform)) |
+| `description` | One sentence description of your offering |
+>>>>>>> master
 
 Examples below are for a fictional Kubernetes implementation called _Turbo
 Encabulator_ produced by a company named _Yoyodyne_.
@@ -126,6 +184,7 @@ repo_url: https://github.com/yoyo.dyne/turbo-encabulator
 documentation_url: https://yoyo.dyne/turbo-encabulator/docs
 product_logo_url: https://yoyo.dyne/assets/turbo-encabulator.svg
 type: distribution
+<<<<<<< HEAD
 description: "The Yoyodyne Turbo Encabulator is a superb Kubernetes distribution for all of your Encabulating needs."
 contact_email_address: yoyodyne@turbo-encabulator.org
 ```
@@ -151,6 +210,11 @@ contact_email_address: yoyodyne@turbo-encabulator.org
 | 15  | the type field in PRODUCT.yaml is valid                                          | it appears that the type field does not match either "distribution", "hosted platform" or "installer"                                                                                                                                             | not-verifiable |                                                                                                | set the type field to a valid value                                                                                                |
 |     | All requirements ($NUMBER) have passed for the submission!                       |                                                                                                                                                                                                                                                   | not-verifiable | - release-+KubernetesReleaseVersion, release-documents-checked, conformance-product-submission | The step will add the release+version & release-documents-checked labels once all $NUMBER check have passed                        |
 
+=======
+description: 'The Yoyodyne Turbo Encabulator is a superb Kubernetes distribution for all of your Encabulating needs.'
+```
+
+>>>>>>> master
 ## Amendment for Private Review
 
 If you need a private review for an unreleased product, please email a zip file containing what you would otherwise submit
